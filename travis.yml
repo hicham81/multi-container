@@ -1,0 +1,19 @@
+sudo: required
+services:
+ - docker
+
+before_install:
+ - docker build -t hicham/react-test -f ./client/Dockerfile.dev ./client
+script:
+  docker run hicham/react-test npm test -- --coverage
+
+after_success:
+ - docker build -t hicham/multi-client ./client
+ - docker build -t hicham/multi-nginx ./nginx
+ - docker build -t hicham/multi-server ./server
+ - docker build -t hicham/multi-worker ./worker
+ - echo "$DOCKER_ID" | docker login -u "$DOCKER_ID" --password-stdin
+ - docker push hicham/multi-client
+ - docker push hicham/multi-nginx
+ - docker push hicham/multi-server
+ - docker push hicham/multi-worker
