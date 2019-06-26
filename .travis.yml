@@ -8,10 +8,10 @@ script:
   docker run hicham/react-test npm test -- --coverage
 
 after_success:
- - docker build -t hicham/multi-client ./client
- - docker build -t hicham/multi-nginx ./nginx
- - docker build -t hicham/multi-server ./server
- - docker build -t hicham/multi-worker ./worker
+ - docker build -t dockerhichamaz/multi-client ./client
+ - docker build -t dockerhichamaz/multi-nginx ./nginx
+ - docker build -t dockerhichamaz/multi-server ./server
+ - docker build -t dockerhichamaz/multi-worker ./worker
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
  - docker push dockerhichamaz/multi-client
  - docker push dockerhichamaz/multi-nginx
