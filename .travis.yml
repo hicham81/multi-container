@@ -13,7 +13,7 @@ after_success:
  - docker build -t hicham/multi-server ./server
  - docker build -t hicham/multi-worker ./worker
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
- - docker push hicham/multi-client
- - docker push hicham/multi-nginx
- - docker push hicham/multi-server
- - docker push hicham/multi-worker
+ - docker push dockerhichamaz/multi-client
+ - docker push dockerhichamaz/multi-nginx
+ - docker push dockerhichamaz/multi-server
+ - docker push dockerhichamaz/multi-worker
