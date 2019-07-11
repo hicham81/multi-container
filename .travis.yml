@@ -3,9 +3,9 @@ services:
  - docker
 
 before_install:
- - docker build -t hicham/react-test -f ./client/Dockerfile.dev ./client
+ - docker build -t dockerhichamaz/react-test -f ./client/Dockerfile.dev ./client
 script:
-  docker run hicham/react-test npm test -- --coverage
+  docker run dockerhichamaz/react-test npm test -- --coverage
 
 after_success:
  - docker build -t dockerhichamaz/multi-client ./client

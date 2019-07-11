@@ -1,0 +1,37 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "containerDefinitions":[
+  {
+  "name": "client",
+  "image":"dockerhichamaz/multi-client",
+  "hostname":"client",
+  "essential": false
+   },
+  {
+  "name": "server",
+  "image":"dockerhichamaz/multi-server",
+  "hostname":"api",
+  "essential": false
+  },
+   {
+  "name": "worker",
+  "image":"dockerhichamaz/multi-worker",
+  "hostname":"worker",
+  "essential": false
+  },
+  
+    {
+  "name": "nginx",
+  "image":"dockerhichamaz/multi-nginx",
+  "hostname":"nginx",
+  "essential": true
+  "portMappings": [
+  {
+  "hostPort":80,
+  "containerPort": 80
+  }
+  ],
+  "links" :["client","server"]
+  }
+  ]
+}
